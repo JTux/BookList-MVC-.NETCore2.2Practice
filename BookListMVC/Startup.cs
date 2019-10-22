@@ -33,6 +33,7 @@ namespace BookListMVC
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //-- Here we're setting up the DI for ApplicationDbContext
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
