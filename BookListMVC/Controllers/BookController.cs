@@ -40,6 +40,19 @@ namespace BookListMVC.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return BadRequest();
+
+            var book = await _context.Books.FindAsync(id);
+            if (book == null)
+                return NotFound();
+
+            return View(book);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
