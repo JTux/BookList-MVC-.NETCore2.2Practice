@@ -27,7 +27,7 @@ namespace BookListMVC.Migrations
                     b.Property<string>("Author")
                         .IsRequired();
 
-                    b.Property<int>("Price");
+                    b.Property<double>("Price");
 
                     b.Property<string>("Title")
                         .IsRequired();

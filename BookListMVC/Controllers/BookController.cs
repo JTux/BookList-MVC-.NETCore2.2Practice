@@ -38,5 +38,36 @@ namespace BookListMVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+                return BadRequest();
+
+            var book = await _context.Books.FindAsync(id);
+            if (book == null)
+                return NotFound();
+
+            return View(book);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Book model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            //_context.Update(model);
+            var book = await _context.Books.FindAsync(model.Id);
+
+            book.Title = model.Title;
+            book.Author = model.Author;
+            book.Price = model.Price;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

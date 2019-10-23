@@ -21,6 +21,6 @@ namespace BookListMVC.Models
         [Required]
         [DataType(DataType.Currency)]
         [Range(0.01, 100, ErrorMessage = "{0} must be between ${1} and ${2}.")]
-        public int Price { get; set; }
+        public double Price { get; set; }
     }
 }

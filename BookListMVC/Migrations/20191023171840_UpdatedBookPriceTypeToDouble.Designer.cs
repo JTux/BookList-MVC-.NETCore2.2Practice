@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookListMVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191023154855_UpdatedBookPriceType")]
-    partial class UpdatedBookPriceType
+    [Migration("20191023171840_UpdatedBookPriceTypeToDouble")]
+    partial class UpdatedBookPriceTypeToDouble
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace BookListMVC.Migrations
                     b.Property<string>("Author")
                         .IsRequired();
 
-                    b.Property<int>("Price");
+                    b.Property<double>("Price");
 
                     b.Property<string>("Title")
                         .IsRequired();
