@@ -69,5 +69,36 @@ namespace BookListMVC.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+                return BadRequest();
+
+            var book = await _context.Books.FindAsync(id);
+            if (book == null)
+                return NotFound();
+
+            return View(book);
+        }
+
+        [HttpPost]
+        [ActionName(nameof(Delete))]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PostDelete(int? id)
+        {
+            if (id == null)
+                return BadRequest();
+
+            var book = await _context.Books.FindAsync(id);
+            if (book == null)
+                return NotFound();
+
+            _context.Remove(book);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
